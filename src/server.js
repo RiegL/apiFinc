@@ -2,11 +2,13 @@ import express from 'express';
 import dotenv from 'dotenv';
 import knex from './config/database.js';
 dotenv.config();
-import useRoute from './modules/user/user.route.js';   
+import userRouter from './modules/user/user.route.js';   
+import authRouter from './modules/auth/auth.route.js'; 
 const app = express();
 app.use(express.json());
 
-app.use('/users', useRoute);
+app.use('/users', userRouter);
+app.use('/auth', authRouter);
 
 app.listen(8080, async () => {
     try {

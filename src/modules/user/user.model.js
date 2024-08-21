@@ -12,10 +12,9 @@ export const getAll = async () => {
 };
 
 export const getById = async (id) => {
-  return knex('users')
+  return knex("users")
     .where({ id })
-    .select('id','name','email','created_at','updated_at')
-    
+    .select("id", "name", "email", "created_at", "updated_at");
 };
 
 export const save = async (params) => {
@@ -29,4 +28,8 @@ export const remove = async (id) => {
 
 export const update = async (id, params) => {
   return knex("users").where({ id }).update(params);
+};
+
+export const getByEmail = async (email) => {
+  return knex("users").where({ email }).first();
 };
