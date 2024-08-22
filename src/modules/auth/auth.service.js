@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { save , getByEmail} from "../user/index.js";
+import { create , getByEmail} from "../user/index.js";
 
 export const login = async (params) => {
   const user = await getByEmail(params.email);
@@ -15,7 +15,7 @@ export const login = async (params) => {
 
   const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
   return { token };
-};
+};// loga um usuario
 
 export const register = async (params) => {
     const user = await getByEmail(params.email);
@@ -23,7 +23,8 @@ export const register = async (params) => {
       return { error: "This e-mail already exists" };
     }
 
-    const userCreated = await save(params);
+    const userCreated = await create(params);
+
     const token = jwt.sign({ id: userCreated[0] }, process.env.JWT_SECRET);
     return { token };
-};
+};// cria um novo usuario com email e senha encriptada

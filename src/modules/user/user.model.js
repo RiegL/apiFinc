@@ -9,27 +9,27 @@ export const getAll = async () => {
     "created_at",
     "updated_at"
   );
-};
+}; // lista todos os usuarios
 
 export const getById = async (id) => {
   return knex("users")
     .where({ id })
     .select("id", "name", "email", "created_at", "updated_at");
-};
+};// busca um usuario pelo id
 
-export const save = async (params) => {
+export const create = async (params) => {
   params.password = await bcrypt.hash(params.password, 10);
   return knex("users").insert(params);
-};
+};// cria um novo usuario
 
 export const remove = async (id) => {
   return knex("users").where({ id }).delete();
-};
+};// deleta um usuario pelo id
 
 export const update = async (id, params) => {
   return knex("users").where({ id }).update(params);
-};
+};// atualiza um usuario pelo id
 
 export const getByEmail = async (email) => {
   return knex("users").where({ email }).first();
-};
+};// busca um usuario pelo email
