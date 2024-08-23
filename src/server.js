@@ -3,15 +3,15 @@ import dotenv from 'dotenv';
 import knex from './config/database.js';
 import cors from 'cors';
 dotenv.config();
-import userRouter from './modules/user/user.route.js';   
-import authRouter from './modules/auth/auth.route.js'; 
+import userRouter from './modules/user/user.route.js';   // rotas para usuários
+import authRouter from './modules/auth/auth.route.js'; // rotas para auth
 import bearerToken from 'express-bearer-token';
 
 const app = express();
 
 app.use(express.json());
-app.use(cors());
-app.use(bearerToken());
+app.use(cors());// middleware para permitir cross-origin requests
+app.use(bearerToken());// middleware para validar tokens    
 
 app.use('/users', userRouter);
 app.use('/auth', authRouter);

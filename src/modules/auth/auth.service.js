@@ -7,14 +7,14 @@ export const login = async (params) => {
 
   if (!user) {
     return { error: "E-mail ou senha inválidos" };
-  }
+  }// verifica se o email existe
 
   const passwordCorrect = bcrypt.compareSync(params.password, user.password);
   if (!passwordCorrect) {
     return { error: "E-mail ou senha inválidos" };
-  }
+  }// verifica se a senha está correta
 
-  const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+  const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET); //cria o token
   
   return { token };
 };// loga um usuario

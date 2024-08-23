@@ -7,7 +7,7 @@ router.get("/", async (_, res) => {
     const data = await getAll();
     res.status(200).json({data});
 })// lista todos os usuarios
-router.get("/me", async (_, res) => {
+router.get("/me", async (req, res) => {
     const data = await getMe(req.token);
     res.status(200).json({data});
 })//valida o token
