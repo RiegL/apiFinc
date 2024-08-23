@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAll, getById , create ,update, remove} from "./index.js";
+import { getAll, getById , create ,update, remove, getMe} from "./index.js";
 
 const router = Router();
 
@@ -7,6 +7,10 @@ router.get("/", async (_, res) => {
     const data = await getAll();
     res.status(200).json({data});
 })// lista todos os usuarios
+router.get("/me", async (_, res) => {
+    const data = await getMe(req.token);
+    res.status(200).json({data});
+})//valida o token
 
 router.get("/:id", async (req, res) => {
     const data = await getById(req.params.id);

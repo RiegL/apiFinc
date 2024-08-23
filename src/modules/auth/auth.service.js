@@ -4,23 +4,25 @@ import { create , getByEmail} from "../user/index.js";
 
 export const login = async (params) => {
   const user = await getByEmail(params.email);
+
   if (!user) {
-    return { error: "Invalid e-mail or password" };
+    return { error: "E-mail ou senha inválidos" };
   }
 
   const passwordCorrect = bcrypt.compareSync(params.password, user.password);
   if (!passwordCorrect) {
-    return { error: "Invalid e-mail or password" };
+    return { error: "E-mail ou senha inválidos" };
   }
 
   const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+  
   return { token };
 };// loga um usuario
 
 export const register = async (params) => {
     const user = await getByEmail(params.email);
     if (user) {
-      return { error: "This e-mail already exists" };
+      return { error: "Este e-mail já está cadastrado" };
     }
 
     const userCreated = await create(params);
