@@ -20,7 +20,7 @@ router.post("/", authMiddleware, async (req, res) => {
   
     const categoriaData = {
       nome: req.body.nome,
-      user_id: req.user.id // Adiciona o user_id do middleware
+      user_id: req.user.id 
     };
   
     console.log("Criando uma nova categoria com:", categoriaData);

@@ -10,7 +10,7 @@ router.post("/login", async (req, res) => {
     res.status(403).json({ error: data.error });
     return;
   }
-  return res.status(200).json({ data });
+  return res.status(200).json({data});
 }); // loga um usuario
 
 router.post("/register", async (req, res) => {
