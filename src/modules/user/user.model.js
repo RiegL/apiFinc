@@ -14,7 +14,8 @@ export const getAll = async () => {
 export const getById = async (id) => {
   return knex("users")
     .where({ id })
-    .select("id", "name", "email", "created_at", "updated_at");
+    .select("id", "name", "email", "created_at", "updated_at")
+    .first();
 };// busca um usuario pelo id
 
 export const create = async (params) => {

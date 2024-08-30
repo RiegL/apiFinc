@@ -15,7 +15,6 @@ export const login = async (params) => {
   }// verifica se a senha está correta
 
   const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET); //cria o token
-  
   return { token };
 };// loga um usuario
 

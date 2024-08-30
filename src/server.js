@@ -11,8 +11,8 @@ import categoriaRouter from './modules/categorias/categoria.route.js'; // rotas 
 const app = express();
 
 app.use(express.json());
-app.use(cors());// middleware para permitir cross-origin requests
-app.use(bearerToken());// middleware para validar tokens    
+app.use(cors());//  para permitir cross-origin requests
+app.use(bearerToken());//  para validar tokens    
 
 app.use('/users', userRouter); //usando rotas para usuários
 app.use('/auth', authRouter); // usando rotas para auth
