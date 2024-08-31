@@ -7,6 +7,8 @@ dotenv.config();
 import userRouter from './modules/user/user.route.js';   // rotas para usuários
 import authRouter from './modules/auth/auth.route.js'; // rotas para auth
 import categoriaRouter from './modules/categorias/categoria.route.js'; // rotas para categorias
+import metaRouter from './modules/metas/metas.route.js'; // rotas para categorias
+import transacoesRouter from './modules/transacoes/transacoes.route.js'; // rotas para categorias
 
 const app = express();
 
@@ -17,6 +19,8 @@ app.use(bearerToken());//  para validar tokens
 app.use('/users', userRouter); //usando rotas para usuários
 app.use('/auth', authRouter); // usando rotas para auth
 app.use('/categorias', categoriaRouter); // usando rotas para categorias
+app.use('/metas', metaRouter); // usando rotas para metas
+app.use('/transacoes', transacoesRouter); // usando rotas para transacoes
 
 app.listen(8080, async () => {
     try {
