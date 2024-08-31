@@ -16,19 +16,11 @@ router.get("/:id", authMiddleware, async (req, res) => {
 
 router.post("/", authMiddleware, async (req, res) => {
     // Verifique se req.user está corretamente definido
-    console.log("User no Middleware:", req.user);
+    // console.log("User no Middleware:", req.user);
   
-    const metaData = {
-      descricao: req.body.descricao,
-      valor: req.body.valor,
-      data: req.body.data || null,
-      tipo: req.body.tipo,
-      categoria_id: req.body.categoria_id,
-      user_id: req.user.id 
-    };
     try {
-      // Verifique o retorno da função create
-      const [data] = await create(metaData);
+      req.body.user_id = req.user.id;
+      const [data] = await create(req.body,req.user.id);
       res.status(201).json({ data });
     } catch (error) {
       console.error("Erro ao criar metas:", error.message);
