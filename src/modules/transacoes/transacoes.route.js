@@ -18,20 +18,21 @@ router.post("/", authMiddleware, async (req, res) => {
     // Verifique se req.user está corretamente definido
     console.log("User no Middleware:", req.user);
   
-    const categoriaData = {
-      nome: req.body.nome,
+    const metaData = {
+      descricao: req.body.descricao,
+      valor: req.body.valor,
+      data: req.body.data || null,
+      tipo: req.body.tipo,
+      categoria_id: req.body.categoria_id,
       user_id: req.user.id 
     };
-  
-    console.log("Criando uma nova categoria com:", categoriaData);
-  
     try {
       // Verifique o retorno da função create
-      const [data] = await create(categoriaData);
+      const [data] = await create(metaData);
       res.status(201).json({ data });
     } catch (error) {
-      console.error("Erro ao criar categoria:", error.message);
-      res.status(500).json({ message: "Erro ao criar categoria" });
+      console.error("Erro ao criar metas:", error.message);
+      res.status(500).json({ message: "Erro ao criar meta" });
     }
   });
   
